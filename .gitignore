@@ -1,0 +1,24 @@
+# Entornos y archivos temporales de Python/Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Respaldos locales de la revisión (el historial de Git conserva las versiones)
+/revision/originales_2026-10-29/
+/revision/respaldo_antes_de_recuperar_graficos/
+/revision/archivos_modificados.json
+/revision/archivos_revision_visual.json
+
+# Recibos locales del renderizador, con rutas de esta computadora
+/revision/resultados/TP2_reentrega_validacion.json
+/revision/resultados/TP3_revision_validacion.json
+/revision/build/
+/revision/exports/
+/.codex-finalizer/
+/.chart-data-*/
+
+# Comprobaciones históricas, sustituidas por verificacion_final.txt
+/revision/resultados/verificacion.txt
+/revision/resultados/verificacion_visual.txt

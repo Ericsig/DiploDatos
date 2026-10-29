@@ -1,0 +1,4 @@
+variables,AUC_creacion_test,n_test
+ai_adoption_rate,0.5729353120047211,24230
+task_automation_rate,0.7078882109170579,24230
+ai_adoption_rate+task_automation_rate,0.8735031626167812,24230

@@ -1,0 +1,22 @@
+{
+  "python": "3.12.4 (tags/v3.12.4:8e8a4ba, Jun  6 2024, 19:30:16) [MSC v.1940 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "versiones": {
+    "numpy": "1.26.4",
+    "pandas": "2.1.4",
+    "sklearn": "1.7.2",
+    "linearmodels": "7.1",
+    "statsmodels": "0.15.0"
+  },
+  "sha256": {
+    "data/raw/ai_company_adoption.csv": "479f826f63885c6715203c17abda519325465e832da38771d5fba3f43e30c922",
+    "data/raw/ai_industry_summary.csv": "4a7ebbb5d58a73f3b017346d8d194b4a1ad33021dc4db73c536a21db5aed8936",
+    "data/raw/company_limpio.csv": "bc3526d62c9e2b579a2c2a95285c8bf9ce34ac9d1a8c68f25843a6041bfea62d",
+    "data/raw/country_ai_index.csv": "df0a49079f6f432dcb7e2d21001c3ef949e52f464876e343c541811f8ee6f037",
+    "data/raw/country_limpio.csv": "df0a49079f6f432dcb7e2d21001c3ef949e52f464876e343c541811f8ee6f037",
+    "data/raw/industry_limpio.csv": "4a7ebbb5d58a73f3b017346d8d194b4a1ad33021dc4db73c536a21db5aed8936"
+  },
+  "sha256_normalizacion": "lf",
+  "seed": 42,
+  "alcance": "Reanálisis exploratorio tras feedback; los datos de test históricos ya fueron consultados. No es una confirmación independiente."
+}

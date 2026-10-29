@@ -1,0 +1,3 @@
+target,modelo,n_train,n_test,macro_F1,accuracy,nota
+Banda ±0.5%,RF ampliado,117944,29526,0.6146987121737147,0.6436361173203279,"Tareas distintas, F1 no comparable directamente"
+Sin neutral,RF ampliado,96752,24242,0.7864694174105815,0.7873525286692518,"Tareas distintas, F1 no comparable directamente"

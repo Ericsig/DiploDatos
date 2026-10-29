@@ -1,0 +1,13 @@
+hipotesis,horizonte,conjunto,n,empresas,periodo_min,periodo_max
+H1,Mismo trimestre,train,74950,10014,0,7
+H1,Mismo trimestre,validacion,37530,10006,8,11
+H1,Mismo trimestre,test,37544,10004,12,15
+H3,Mismo trimestre,train,74950,10014,0,7
+H3,Mismo trimestre,validacion,37530,10006,8,11
+H3,Mismo trimestre,test,37544,10004,12,15
+H1,Rezago exacto t-1,train,61429,9998,1,7
+H1,Rezago exacto t-1,validacion,35210,9964,8,11
+H1,Rezago exacto t-1,test,35233,9949,12,15
+H3,Rezago exacto t-1,train,61429,9998,1,7
+H3,Rezago exacto t-1,validacion,35210,9964,8,11
+H3,Rezago exacto t-1,test,35233,9949,12,15

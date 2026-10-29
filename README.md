@@ -15,3 +15,14 @@ También construiremos modelos predictivos para estimar distintos niveles de imp
 Uno de los aspectos más interesantes del proyecto es que no existe una única pregunta ni una única respuesta correcta. El dataset es lo suficientemente rico como para permitir múltiples líneas de investigación, y gran parte del desafío consistirá en formular buenas preguntas, encontrar evidencia sólida y construir argumentos respaldados por datos.
 
 Si te interesa trabajar con un dataset grande, explorar fenómenos actuales, combinar análisis exploratorio con *machine learning* y discutir temas que hoy están en el centro del debate tecnológico, económico y social, este proyecto probablemente sea para vos.
+
+## Revisión docente de TP2 y TP3
+
+La presentación de entrega es [IA_en_las_empresas_presentation_v2.pptx](deck/IA_en_las_empresas_presentation_v2.pptx). El análisis ejecutado está en [modelado.ipynb](notebook/modelado.ipynb), con sus gráficos e interpretaciones.
+
+- [Cambios del TP3 y fundamento de los cálculos](revision/CAMBIOS_TP3.md): qué cambié, por qué y cómo se interpretan los resultados.
+- [Valores de la presentación](revision/VALORES_PRESENTACION.md): fuentes, fórmulas y comprobación de las cifras del PPTX.
+- [Reproducir y verificar](revision/REPRODUCIR.md): entorno y comandos.
+- [Cobertura de las devoluciones](revision/MATRIZ_DEVOLUCIONES.md): correspondencia con el feedback docente.
+
+Los CSV crudos permanecen intactos. Las respuestas objetivo no se imputan y las transformaciones predictivas se aprenden dentro del entrenamiento. Los resultados describen asociaciones en datos sintéticos.

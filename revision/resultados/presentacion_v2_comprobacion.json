@@ -1,0 +1,11 @@
+{
+  "presentacion": "deck/IA_en_las_empresas_presentation_v2.pptx",
+  "sha256": "5e879ebf898d7711a39f7ff2151420e166216e23dd4660f402f0097b227a906b",
+  "graficos_verificados": 8,
+  "valores_graficos_verificados": 35,
+  "celdas_metricas_verificadas": 12,
+  "celdas_matriz_verificadas": 9,
+  "conteos_texto_verificados": 9,
+  "tolerancia_numerica_graficos": 5.1e-11,
+  "estado": "OK"
+}

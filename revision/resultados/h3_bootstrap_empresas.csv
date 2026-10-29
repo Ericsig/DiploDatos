@@ -1,0 +1,2 @@
+modelo,comparador,replicas,delta_macro_F1,ci_2_5,ci_97_5
+RF ampliado,RF base,200,0.0036128828510723077,0.0008792114882507226,0.006986042604044508

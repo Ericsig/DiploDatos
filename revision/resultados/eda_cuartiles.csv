@@ -1,0 +1,9 @@
+variable,cuartil,n,pct_productividad_mayor_20,periodo
+ai_adoption_rate,Q1,2308,0.12998266897746968,2026 Q2
+ai_adoption_rate,Q2,2308,0.5199306759098787,2026 Q2
+ai_adoption_rate,Q3,2308,2.859618717504333,2026 Q2
+ai_adoption_rate,Q4,2307,14.781100996965757,2026 Q2
+ai_investment_per_employee,Q1,2308,2.166377816291161,2026 Q2
+ai_investment_per_employee,Q2,2308,3.552859618717504,2026 Q2
+ai_investment_per_employee,Q3,2307,5.071521456436931,2026 Q2
+ai_investment_per_employee,Q4,2308,7.495667244367418,2026 Q2

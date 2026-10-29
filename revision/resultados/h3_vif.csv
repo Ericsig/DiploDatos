@@ -1,0 +1,58 @@
+especificacion,variable,VIF
+Completo,ai_adoption_rate,4.688575044306664
+Completo,task_automation_rate,2.0646659489516095
+Completo,ai_maturity_score,4.027777739958965
+Completo,num_employees,10.925758826276999
+Completo,industry_Consulting,1.6546035035917757
+Completo,industry_Education,1.7679460135747234
+Completo,industry_Finance,2.015319510554851
+Completo,industry_Healthcare,1.942019290064476
+Completo,industry_Logistics,1.7130381969058963
+Completo,industry_Manufacturing,1.9272112321655932
+Completo,industry_Retail,1.8720683482708926
+Completo,industry_Technology,2.0956726858959653
+Completo,company_size_SME,7.861387957689823
+Completo,company_size_Startup,19.885987057209817
+Completo,survey_year_2024.0,1.505486970681796
+Completo,survey_year_2025.0,1.5171947022321985
+Completo,survey_year_2026.0,1.5343872457886054
+Completo,quarter_Q2,1.5012173134566966
+Completo,quarter_Q3,1.5026157848772967
+Completo,quarter_Q4,1.5053362051153478
+Sin num_employees,ai_adoption_rate,4.688495530124329
+Sin num_employees,task_automation_rate,2.064655515396514
+Sin num_employees,ai_maturity_score,4.02771979045611
+Sin num_employees,industry_Consulting,1.6545021838434997
+Sin num_employees,industry_Education,1.7679439300377082
+Sin num_employees,industry_Finance,2.0153191812797018
+Sin num_employees,industry_Healthcare,1.9419596225502884
+Sin num_employees,industry_Logistics,1.7129561289792377
+Sin num_employees,industry_Manufacturing,1.9269985689245799
+Sin num_employees,industry_Retail,1.8719605552358276
+Sin num_employees,industry_Technology,2.095568022968682
+Sin num_employees,company_size_SME,1.9994008424405232
+Sin num_employees,company_size_Startup,2.1898396101797055
+Sin num_employees,survey_year_2024.0,1.5054820451190754
+Sin num_employees,survey_year_2025.0,1.5171886394991199
+Sin num_employees,survey_year_2026.0,1.5343771392006793
+Sin num_employees,quarter_Q2,1.5012170043374657
+Sin num_employees,quarter_Q3,1.5026152378023827
+Sin num_employees,quarter_Q4,1.505336191791515
+Sin company_size,ai_adoption_rate,4.659958083303559
+Sin company_size,task_automation_rate,2.0646590451225437
+Sin company_size,ai_maturity_score,3.9620827523960607
+Sin company_size,num_employees,1.1822372331450899
+Sin company_size,industry_Consulting,1.6545212049822415
+Sin company_size,industry_Education,1.7678734007798036
+Sin company_size,industry_Finance,2.014998623711562
+Sin company_size,industry_Healthcare,1.9418672674478492
+Sin company_size,industry_Logistics,1.712662130485246
+Sin company_size,industry_Manufacturing,1.9270111807680799
+Sin company_size,industry_Retail,1.871836678077318
+Sin company_size,industry_Technology,2.0946044085670823
+Sin company_size,survey_year_2024.0,1.5054070472696495
+Sin company_size,survey_year_2025.0,1.5168927579537788
+Sin company_size,survey_year_2026.0,1.5337522679841793
+Sin company_size,quarter_Q2,1.5012021190621443
+Sin company_size,quarter_Q3,1.5025690961745872
+Sin company_size,quarter_Q4,1.5052623488146133

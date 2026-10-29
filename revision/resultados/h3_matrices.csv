@@ -1,0 +1,46 @@
+modelo,real,predicha,n
+Logit lineal,neutral,neutral,2826
+Logit lineal,neutral,net_creation,1267
+Logit lineal,neutral,net_displacement,1191
+Logit lineal,net_creation,neutral,916
+Logit lineal,net_creation,net_creation,9664
+Logit lineal,net_creation,net_displacement,2234
+Logit lineal,net_displacement,neutral,894
+Logit lineal,net_displacement,net_creation,2385
+Logit lineal,net_displacement,net_displacement,8149
+Logit spline,neutral,neutral,2908
+Logit spline,neutral,net_creation,1195
+Logit spline,neutral,net_displacement,1181
+Logit spline,net_creation,neutral,938
+Logit spline,net_creation,net_creation,9608
+Logit spline,net_creation,net_displacement,2268
+Logit spline,net_displacement,neutral,909
+Logit spline,net_displacement,net_creation,2370
+Logit spline,net_displacement,net_displacement,8149
+RF base,neutral,neutral,2910
+RF base,neutral,net_creation,1238
+RF base,neutral,net_displacement,1136
+RF base,net_creation,neutral,958
+RF base,net_creation,net_creation,9613
+RF base,net_creation,net_displacement,2243
+RF base,net_displacement,neutral,931
+RF base,net_displacement,net_creation,2491
+RF base,net_displacement,net_displacement,8006
+RF ampliado,neutral,neutral,2882
+RF ampliado,neutral,net_creation,1233
+RF ampliado,neutral,net_displacement,1169
+RF ampliado,net_creation,neutral,909
+RF ampliado,net_creation,net_creation,9654
+RF ampliado,net_creation,net_displacement,2251
+RF ampliado,net_displacement,neutral,859
+RF ampliado,net_displacement,net_creation,2457
+RF ampliado,net_displacement,net_displacement,8112
+Mayoritaria,neutral,neutral,0
+Mayoritaria,neutral,net_creation,5284
+Mayoritaria,neutral,net_displacement,0
+Mayoritaria,net_creation,neutral,0
+Mayoritaria,net_creation,net_creation,12814
+Mayoritaria,net_creation,net_displacement,0
+Mayoritaria,net_displacement,neutral,0
+Mayoritaria,net_displacement,net_creation,11428
+Mayoritaria,net_displacement,net_displacement,0

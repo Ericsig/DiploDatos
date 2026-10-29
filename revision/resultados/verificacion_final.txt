@@ -1,0 +1,9 @@
+OK: respuestas no fabricadas, verificadas contra el crudo
+OK: rezagos exactos con huecos y empresas distintas
+OK: medianas de estrato y respaldo aprendidos únicamente con train
+OK: notebooks válidos y todas las celdas de código ejecutadas sin errores
+OK: huellas de los CSV fuente coinciden
+OK: todas las particiones temporales respetan orden estricto
+OK: TWFE usa muestra común y las cuatro familias tienen una configuración elegida
+OK: presentación v2, 8 gráficos y 35 cifras verificadas, más métricas y matriz
+OK: 14 figuras conservadas en el notebook de modelado

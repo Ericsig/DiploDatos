@@ -1,0 +1,106 @@
+{
+  "filas_crudas": 150025,
+  "columnas_crudas": 43,
+  "empresas_crudas": 10025,
+  "periodos": 16,
+  "recuperacion": [
+    {
+      "variable": "industry",
+      "recuperadas": 2250,
+      "empresas_con_cambios": 0,
+      "sin_resolver": 3
+    },
+    {
+      "variable": "company_size",
+      "recuperadas": 2250,
+      "empresas_con_cambios": 0,
+      "sin_resolver": 1
+    },
+    {
+      "variable": "country",
+      "recuperadas": 0,
+      "empresas_con_cambios": 0,
+      "sin_resolver": 1
+    }
+  ],
+  "tras_faltantes": 147772,
+  "adopcion_invalida": 301,
+  "panel_observado": [
+    147471,
+    56
+  ],
+  "completa": [
+    147471,
+    90
+  ],
+  "matriz": [
+    147385,
+    55
+  ],
+  "skew": [
+    {
+      "variable": "annual_revenue_usd_millions",
+      "n_observados": 147471.0,
+      "skew_antes": 2.270013276570773,
+      "skew_despues_log1p": 0.3321133971356283
+    },
+    {
+      "variable": "ai_investment_per_employee",
+      "n_observados": 147471.0,
+      "skew_antes": 4.5010801091972255,
+      "skew_despues_log1p": -2.7968458690975284
+    }
+  ],
+  "caso_testigo": [
+    {
+      "desde": -1000000000.0,
+      "hasta": -13000,
+      "nombre": "grupo negativo",
+      "n": 160
+    },
+    {
+      "desde": -13000,
+      "hasta": 0,
+      "nombre": "hueco",
+      "n": 0
+    },
+    {
+      "desde": 0,
+      "hasta": 10000,
+      "nombre": "CUERPO",
+      "n": 147468
+    },
+    {
+      "desde": 10000,
+      "hasta": 13221,
+      "nombre": "hueco",
+      "n": 0
+    },
+    {
+      "desde": 13221,
+      "hasta": 1000000000.0,
+      "nombre": "grupo positivo",
+      "n": 144
+    }
+  ],
+  "tamano": [
+    {
+      "company_size": "Enterprise",
+      "min": 1010.0,
+      "median": 10811.0,
+      "max": 19970.0
+    },
+    {
+      "company_size": "SME",
+      "min": 100.0,
+      "median": 543.5,
+      "max": 999.0
+    },
+    {
+      "company_size": "Startup",
+      "min": 10.0,
+      "median": 54.0,
+      "max": 99.0
+    }
+  ]
+}
