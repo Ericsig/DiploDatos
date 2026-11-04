@@ -2,7 +2,7 @@
 
 Les dejo el detalle de los cambios que hice a partir de la devolución de Caro. La idea fue corregir las decisiones metodológicas, recalcular las cifras y conservar los gráficos que ayudan a entender el recorrido del análisis.
 
-La presentación de entrega es **`deck/IA_en_las_empresas_presentation_v2.pptx`**. El notebook principal es **`notebook/modelado.ipynb`**. El detalle numérico por diapositiva está en **`revision/VALORES_PRESENTACION.md`**, generado desde los mismos CSV que producen los modelos.
+La presentación de entrega es **`deck/IA_en_las_empresas_presentation_v3.pptx`**, que parte de la v2 y solo cambia textos, rótulos y ejes (ver `revision/CAMBIOS_V3.md`). El notebook principal es **`notebook/modelado.ipynb`**. El detalle numérico por diapositiva está en **`revision/VALORES_PRESENTACION.md`**, generado desde los mismos CSV que producen los modelos.
 
 ## 1. Preparación: recuperar información y no fabricar respuestas
 

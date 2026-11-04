@@ -15,7 +15,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / 'revision' / 'resultados'
-DECK = ROOT / 'deck' / 'IA_en_las_empresas_presentation_v2.pptx'
+DECK = ROOT / 'deck' / 'IA_en_las_empresas_presentation_v3.pptx'
 NS = {
     'c': 'http://schemas.openxmlformats.org/drawingml/2006/chart',
     'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
@@ -36,6 +36,11 @@ def construir_valores():
                      'categoria': category, 'valor': float(value), 'unidad': unit,
                      'fuente': source, 'calculo': calculation})
 
+    def mensaje(slide, value, decimals, suffix, unit, source, calculation, shown=None):
+        """Cifra redondeada que aparece en una frase de la diapositiva."""
+        shown = shown or f'{value:.{decimals}f}'.replace('.', ',') + suffix
+        add(slide, 'texto_redondeado', 'Mensaje', shown, value, unit, source, calculation)
+
     cur = json.loads((RESULTS / 'curacion_resumen.json').read_text(encoding='utf8'))
     for field, label in [('filas_crudas', 'Respuestas'), ('empresas_crudas', 'Empresas'), ('periodos', 'Trimestres')]:
         add(2, 'texto_entero', 'Dataset', label, cur[field], 'conteo', 'curacion_resumen.json',
@@ -49,13 +54,19 @@ def construir_valores():
     add(2, 'texto_entero', 'Muestra común 2026 Q2', 'Empresas',
         quart.loc[quart.variable.eq('ai_adoption_rate'), 'n'].sum(), 'conteo', 'eda_cuartiles.csv',
         'Suma de los cuatro cuartiles; una observación por empresa y muestra común para ambos predictores')
-    for variable, label in [('ai_adoption_rate', 'Adopción'),
-                            ('ai_investment_per_employee', 'Inversión')]:
+    for variable, label in [('ai_adoption_rate', 'Empresas ordenadas por adopción'),
+                            ('ai_investment_per_employee', 'Empresas ordenadas por inversión')]:
         a = quart.loc[quart.variable.eq(variable)].set_index('cuartil')
-        for q, category in [('Q1', 'Q1 bajo'), ('Q2', 'Q2'), ('Q3', 'Q3'), ('Q4', 'Q4 alto')]:
+        for q, category in [('Q1', 'Grupo 1 (25% más bajo)'), ('Q2', 'Grupo 2'), ('Q3', 'Grupo 3'),
+                            ('Q4', 'Grupo 4 (25% más alto)')]:
             add(2, 'grafico', label, category, a.loc[q, 'pct_productividad_mayor_20'] / 100,
                 'proporción', 'eda_cuartiles.csv',
                 'media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2')
+    pct_q = quart.set_index(['variable', 'cuartil']).pct_productividad_mayor_20
+    for key, decimals in [(('ai_adoption_rate', 'Q1'), 2), (('ai_investment_per_employee', 'Q4'), 1),
+                          (('ai_investment_per_employee', 'Q1'), 1)]:
+        mensaje(2, pct_q[key], decimals, '%', 'porcentaje', 'eda_cuartiles.csv',
+                f'Subtítulo: {key[0]}, {key[1]}, % de empresas con mejora > 20')
 
     twfe = _read('h1_twfe').set_index(['especificacion', 'variable'])
     add(4, 'texto_entero', 'Muestra común TWFE', 'Observaciones', twfe.n.iloc[0], 'conteo',
@@ -71,20 +82,33 @@ def construir_valores():
 
     sens = _read('h1_sensibilidad')
     for spec in ['Sin adopción', 'Con adopción']:
-        for sample, label in [('Completa', 'Completa'), ('Sin leverage alto', 'Sin leverage alto'),
-                               ('Sin residuos |z|>3.5', 'Sin residuos extremos')]:
+        for sample, label in [('Completa', 'Todos los datos'),
+                               ('Sin leverage alto', 'Sin puntos muy alejados (leverage alto)'),
+                               ('Sin residuos |z|>3.5', 'Sin errores muy grandes (residuos)')]:
             a = sens.loc[sens.especificacion.eq(spec) & sens.variable.eq('log_inversion') & sens.muestra.eq(sample)].iloc[0]
-            add(4, 'grafico', spec, label, a.beta, 'coeficiente de log1p(inversión)',
+            add(4, 'grafico', f'Modelo {spec.lower()}', label, a.beta, 'coeficiente de log1p(inversión)',
                 'h1_sensibilidad.csv', f'Reajuste TWFE en muestra: {sample}; EE agrupados por empresa')
+    con = sens.loc[sens.especificacion.eq('Con adopción') & sens.variable.eq('log_inversion')].set_index('muestra')
+    retiradas = con.loc['Completa', 'n'] - con.loc['Sin leverage alto', 'n']
+    add(4, 'texto_entero', 'Filas con leverage alto', 'Retiradas', retiradas, 'conteo', 'h1_sensibilidad.csv',
+        'n(Completa) − n(Sin leverage alto), modelo con adopción')
+    mensaje(4, 100 * retiradas / con.loc['Completa', 'n'], 1, '%', 'porcentaje', 'h1_sensibilidad.csv',
+            'Filas retiradas / n(Completa)')
+    for sample in ['Completa', 'Sin leverage alto']:
+        mensaje(4, con.loc[sample, 'beta'], 2, '', 'coeficiente de log1p(inversión)', 'h1_sensibilidad.csv',
+                f'Mensaje: pendiente con adopción, muestra {sample}')
 
     pred = _read('h1_prediccion').query("conjunto == 'test'")
     for _, a in pred.iterrows():
-        add(5, 'grafico', 'MAE en empresas nuevas', a.modelo, a.MAE,
+        add(5, 'grafico', 'MAE en empresas nuevas',
+            {'Media train': 'Siempre el promedio (referencia)'}.get(a.modelo, a.modelo), a.MAE,
             'puntos porcentuales', 'h1_prediccion.csv', 'media(abs(y_test − pred_test))')
     for model in ['Ridge', 'Gradient boosting']:
         a = pred.set_index('modelo').loc[model]
         add(5, 'texto', 'R² en test', model, a.R2, 'R²', 'h1_prediccion.csv',
             '1 − sum((y − pred)^2) / sum((y − media(y_test))^2)')
+        mensaje(5, 100 * a.R2, 1, '%', 'porcentaje de variación explicada', 'h1_prediccion.csv',
+                f'100 × R² en test de {model}')
 
     neutral = _read('h3_neutral')
     for _, a in neutral.iterrows():
@@ -95,21 +119,28 @@ def construir_valores():
     contrasts = _read('h3_contrastes').query("especificacion == 'Completo'")
     for var, label in [('ai_adoption_rate', 'Adopción (+10 puntos)'),
                         ('task_automation_rate', 'Automatización (+10 puntos)')]:
-        for prefix, category in [('net_creation', 'Creación / neutral'),
-                                  ('net_displacement', 'Desplazamiento / neutral')]:
+        for prefix, category in [('net_creation', 'Creación frente a neutral'),
+                                  ('net_displacement', 'Desplazamiento frente a neutral')]:
             a = contrasts.loc[contrasts.variable.eq(var) & contrasts.contraste.str.startswith(prefix)].iloc[0]
             np.testing.assert_allclose(np.exp(a.coef), a.RRR, rtol=1e-12)
             add(7, 'grafico', label, category, a.coef, 'log(RRR)', 'h3_contrastes.csv',
                 'Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia')
+            if (var, prefix) in [('ai_adoption_rate', 'net_creation'), ('task_automation_rate', 'net_displacement')]:
+                mensaje(7, a.RRR, 1, '', 'RRR', 'h3_contrastes.csv',
+                        f'Mensaje: exp(coef) de {var}, {prefix} frente a neutral, por +10 puntos')
     vif = _read('h3_vif').query("especificacion == 'Completo'")
-    add(7, 'texto', 'VIF máximo', vif.loc[vif.VIF.idxmax(), 'variable'], vif.VIF.max(),
-        'VIF', 'h3_vif.csv', 'max(1/(1 − R² auxiliar)) del diseño de entrenamiento')
+    add(7, 'contexto', 'VIF máximo', vif.loc[vif.VIF.idxmax(), 'variable'], vif.VIF.max(),
+        'VIF', 'h3_vif.csv', 'max(1/(1 − R² auxiliar)) del diseño de entrenamiento; no se muestra en la diapositiva')
+    panel = pd.read_csv(ROOT / 'data' / 'raw' / 'company_limpio.csv', usecols=['ai_adoption_rate', 'task_automation_rate'])
+    mensaje(7, panel.ai_adoption_rate.corr(panel.task_automation_rate), 1, '', 'correlación de Pearson',
+            'data/raw/company_limpio.csv', 'Pie: r entre adopción y automatización, todas las filas con ambos datos')
 
     models = _read('h3_modelos').query("conjunto == 'test'").set_index('modelo')
     for model in ['Logit lineal', 'Logit spline', 'RF base', 'RF ampliado']:
         for metric, label in [('macro_F1', 'Macro-F1'), ('net_creation_f1-score', 'F1 creación'),
                                ('net_displacement_f1-score', 'F1 desplaz.')]:
-            add(8, 'tabla_metricas', model, label, models.loc[model, metric], 'F1',
+            add(8, 'tabla_metricas', {'Logit spline': 'Logit con curvas'}.get(model, model), label,
+                models.loc[model, metric], 'F1',
                 'h3_modelos.csv', 'F1=2PR/(P+R); macro-F1=media de F1 de las tres clases')
     matrices = _read('h3_matrices').query("modelo == 'RF ampliado'")
     class_names = {'neutral': 'Neutral', 'net_creation': 'Creación', 'net_displacement': 'Desplaz.'}
@@ -130,6 +161,12 @@ def construir_valores():
         'h3_modelos_cv.csv', 'max de macro-F1 promedio en GroupKFold, sin elegir con test')
     add(8, 'texto', 'Referencia mayoritaria', 'Accuracy', models.loc['Mayoritaria', 'accuracy'],
         'proporción', 'h3_modelos.csv', 'media(y_test == clase más frecuente de train)')
+    for model in ['RF ampliado', 'Mayoritaria']:
+        acc = models.loc[model, 'accuracy']
+        mensaje(8, acc, 0, '', 'proporción', 'h3_modelos.csv', f'Mensaje: accuracy en test de {model}, redondeada a décimos',
+                shown=f'{round(acc * 10)} de cada 10')
+    mensaje(8, 100 * models.loc['RF ampliado', 'neutral_recall'], 0, '%', 'porcentaje', 'h3_modelos.csv',
+            'Pie: recall de neutral del RF ampliado')
 
     temporal = _read('validacion_temporal').query("conjunto == 'test'")
     for horizon in ['Mismo trimestre', 'Rezago exacto t-1']:
@@ -139,10 +176,14 @@ def construir_valores():
             'validacion_temporal.csv', 'Filas con respuesta disponible en 2026; pares calendario exactos para t−1')
     for hyp, metric, unit in [('H1', 'MAE', 'puntos porcentuales'), ('H3', 'macro_F1', 'F1')]:
         for model in ['Modelo', 'Referencia train']:
-            for horizon, label in [('Mismo trimestre', 'Mismo trimestre'), ('Rezago exacto t-1', 't−1 exacto')]:
+            for horizon, label in [('Mismo trimestre', 'Mismo trimestre'), ('Rezago exacto t-1', 'Trimestre anterior')]:
                 a = temporal.loc[temporal.hipotesis.eq(hyp) & temporal.modelo.eq(model) & temporal.horizonte.eq(horizon)].iloc[0]
-                add(9, 'grafico', model, label + ' · ' + hyp, a[metric], unit,
+                add(9, 'grafico', {'Referencia train': 'Referencia sin modelo'}.get(model, model), label + ' · ' + hyp,
+                    a[metric], unit,
                     'validacion_temporal.csv', f'{metric} en 2026; entrenar 2023–24, elegir penalización en 2025')
+                if model == 'Modelo':
+                    mensaje(9, a[metric], 2, '', unit, 'validacion_temporal.csv',
+                            f'Mensaje: {metric} de {hyp} en 2026, {label}')
     return pd.DataFrame(rows)
 
 
@@ -159,6 +200,9 @@ def verificar_pptx(values, deck=DECK):
             text = ' '.join(ET.fromstring(package.read(f'ppt/slides/slide{row.slide}.xml')).itertext())
             shown = f'{int(row.valor):,}'.replace(',', '.')
             assert re.search(r'(?<![\d.])' + re.escape(shown) + r'(?!\d|\.\d)', text), f'Slide {row.slide}: falta {shown}'
+        for row in values.loc[values.elemento.eq('texto_redondeado')].itertuples():
+            text = ''.join(ET.fromstring(package.read(f'ppt/slides/slide{row.slide}.xml')).itertext())
+            assert re.search(r'(?<![\d,])' + re.escape(row.categoria) + r'(?![\d])', text), f'Slide {row.slide}: falta {row.categoria}'
         for slide in [2, 4, 5, 6, 7, 9]:
             xml = ET.fromstring(package.read(f'ppt/slides/slide{slide}.xml'))
             rels = ET.fromstring(package.read(f'ppt/slides/_rels/slide{slide}.xml.rels'))
@@ -195,7 +239,7 @@ def verificar_pptx(values, deck=DECK):
             for label, actual in zip(metric_table[0][1:], row[1:]):
                 val = expected.loc[expected.categoria.eq(label), 'valor'].iloc[0]
                 assert actual == f'{val:.3f}'.replace('.', ','), f'Slide 8: {row[0]}, {label}'
-        matrix = next(t for t in tables if t[0][0] == 'Real / pred.')
+        matrix = next(t for t in tables if t[0][0] == 'Real / Predicho')
         for row in matrix[1:]:
             for label, actual in zip(matrix[0][1:], row[1:]):
                 val = values.loc[values.elemento.eq('matriz') & values.serie.eq(row[0]) & values.categoria.eq(label), 'valor'].iloc[0]
@@ -205,6 +249,7 @@ def verificar_pptx(values, deck=DECK):
             'graficos_verificados': chart_count, 'valores_graficos_verificados': matched,
             'celdas_metricas_verificadas': 12, 'celdas_matriz_verificadas': 9,
             'conteos_texto_verificados': int(values.elemento.eq('texto_entero').sum()),
+            'mensajes_redondeados_verificados': int(values.elemento.eq('texto_redondeado').sum()),
             'tolerancia_numerica_graficos': 5.1e-11, 'estado': 'OK'}
 
 
@@ -212,11 +257,11 @@ def exportar_valores():
     values = construir_valores()
     audit = verificar_pptx(values)
     values.to_csv(RESULTS / 'valores_presentacion.csv', index=False)
-    (RESULTS / 'presentacion_v2_comprobacion.json').write_text(
+    (RESULTS / 'presentacion_v3_comprobacion.json').write_text(
         json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
     lines = ['# Cifras de la presentación de TP3', '',
              'Este documento se genera con `python scripts/calcular_valores_presentacion.py` a partir de los CSV ejecutados.', '',
-             'La presentación de entrega es `deck/IA_en_las_empresas_presentation_v2.pptx`. Se lee para verificarla, sin modificarla.', '',
+             'La presentación de entrega es `deck/IA_en_las_empresas_presentation_v3.pptx`. Se lee para verificarla, sin modificarla.', '',
              'Los porcentajes de los gráficos se guardan como proporciones (0,1478 se muestra como 14,78%). Las cifras se redondean solo al presentar.', '']
     for slide, part in values.groupby('slide', sort=True):
         lines.extend([f'## Diapositiva {slide}', '', '| Elemento | Serie / categoría | Valor sin redondear | Unidad | Fuente y cálculo |',
@@ -227,7 +272,8 @@ def exportar_valores():
         lines.append('')
     lines.extend(['## Comprobación contra el PPTX', '',
                   f'Se verificaron {audit["graficos_verificados"]} gráficos, {audit["valores_graficos_verificados"]} valores, '
-                  '12 celdas de métricas y 9 celdas de la matriz de confusión. La comprobación falla si una cifra deja de coincidir.', '',
+                  f'12 celdas de métricas, 9 celdas de la matriz de confusión y {audit["mensajes_redondeados_verificados"]} cifras redondeadas en frases. '
+                  'La comprobación falla si una cifra deja de coincidir.', '',
                   'El coeficiente de adopción/automatización del logit se expresa por +10 puntos y en log(RRR); exponenciarlo da la RRR frente a neutral. '
                   'TWFE usa cambios de una misma empresa y no es intercambiable con el modelo predictivo entre empresas. '
                   'Las métricas temporales contemporáneas y rezagadas se calculan sobre muestras distintas.', ''])

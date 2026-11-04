@@ -18,7 +18,7 @@ Si te interesa trabajar con un dataset grande, explorar fenómenos actuales, com
 
 ## Revisión docente de TP2 y TP3
 
-La presentación de entrega es [IA_en_las_empresas_presentation_v2.pptx](deck/IA_en_las_empresas_presentation_v2.pptx). El análisis ejecutado está en [modelado.ipynb](notebook/modelado.ipynb), con sus gráficos e interpretaciones.
+La presentación de entrega es [IA_en_las_empresas_presentation_v3.pptx](deck/IA_en_las_empresas_presentation_v3.pptx). El análisis ejecutado está en [modelado.ipynb](notebook/modelado.ipynb), con sus gráficos e interpretaciones.
 
 - [Cambios del TP3 y fundamento de los cálculos](revision/CAMBIOS_TP3.md): qué cambié, por qué y cómo se interpretan los resultados.
 - [Valores de la presentación](revision/VALORES_PRESENTACION.md): fuentes, fórmulas y comprobación de las cifras del PPTX.

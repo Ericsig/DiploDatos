@@ -65,7 +65,7 @@ print('OK: TWFE usa muestra común y las cuatro familias tienen una configuraci�
 
 from valores_presentacion import construir_valores, verificar_pptx
 audit = verificar_pptx(construir_valores())
-print(f"OK: presentación v2, {audit['graficos_verificados']} gráficos y "
+print(f"OK: presentación v3, {audit['graficos_verificados']} gráficos y "
       f"{audit['valores_graficos_verificados']} cifras verificadas, más métricas y matriz")
 
 modelado = nbformat.read(root/'notebook/modelado.ipynb',as_version=4)

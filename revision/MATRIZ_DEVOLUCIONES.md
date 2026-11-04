@@ -4,7 +4,7 @@ Revisión del 29/10/2026. Equipo: Eric Sigwald, Gonzalo Marengo y Sebastian Rigo
 
 | Devolución | Corrección verificable |
 |---|---|
-| TP2: extensión, contexto TP1 y dos hipótesis | La presentación integrada de entrega es `deck/IA_en_las_empresas_presentation_v2.pptx`: H1/H3 antes de datos, contexto y curación resumidos. La reentrega separada de TP2 no forma parte de esta versión seleccionada por el equipo. |
+| TP2: extensión, contexto TP1 y dos hipótesis | La presentación integrada de entrega es `deck/IA_en_las_empresas_presentation_v3.pptx`: H1/H3 antes de datos, contexto y curación resumidos. La reentrega separada de TP2 no forma parte de esta versión seleccionada por el equipo. |
 | Integrantes | Nombres en ambas portadas y notebooks, identidades de Git y confirmación de Gonzalo Marengo. |
 | Caso testigo confuso | Curación sección 5 compara franjas de la misma variable, con unidad y recuentos recalculados. Distingue facturación de beneficio. |
 | Redundancia confusa | Curación sección 8: familia, comparación y decisión explícita. Una correlación alta no demuestra fuga. |
@@ -24,7 +24,7 @@ Revisión del 29/10/2026. Equipo: Eric Sigwald, Gonzalo Marengo y Sebastian Rigo
 | Elección RF ampliado y métrica | Macro-F1 de tres clases en todos los grids y selección de familia; F1 empleo secundaria. Se reporta precisión/recall/F1 por clase, accuracy, log-loss y bootstrap por empresa. |
 | Empresas vs. futuro | GroupKFold y 80/20 por empresa se conservan. Validación temporal 2023–24/2025/2026 se ejecuta como experimento distinto. |
 | Rezagos con huecos | Join exacto por empresa y trimestre calendario; prueba que un salto de dos trimestres no produce lag. |
-| TP3: pregunta/hipótesis y modelos antes de resultados | Presentación v2 de diez slides. Cada modelo declara respuesta, finalidad y funcionamiento antes de su tabla. H2 fuera de las conclusiones. |
+| TP3: pregunta/hipótesis y modelos antes de resultados | Presentación v3 de diez slides. Cada modelo declara respuesta, finalidad y funcionamiento antes de su tabla. H2 fuera de las conclusiones. |
 | TP3: porcentaje aislado de productividad | Barras editables por cuatro cuartiles de adopción/inversión, muestra común de 2026 Q2, umbral >20% explícito. |
 | TP3: tabla mezclada y titulares/matrices incoherentes | Resultados junto a cada hipótesis; tabla final con nombres exactos de modelos y métricas. No se reutilizan imágenes o números históricos. |
 

@@ -5,43 +5,55 @@ slide,elemento,serie,categoria,valor,unidad,fuente,calculo
 3,texto_entero,Categorías recuperadas,industry,2250.0,celdas,curacion_resumen.json,Categoría faltante completada con atributo único observado por empresa
 3,texto_entero,Categorías recuperadas,company_size,2250.0,celdas,curacion_resumen.json,Categoría faltante completada con atributo único observado por empresa
 2,texto_entero,Muestra común 2026 Q2,Empresas,9231.0,conteo,eda_cuartiles.csv,Suma de los cuatro cuartiles; una observación por empresa y muestra común para ambos predictores
-2,grafico,Adopción,Q1 bajo,0.001299826689774696,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Adopción,Q2,0.005199306759098787,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Adopción,Q3,0.02859618717504333,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Adopción,Q4 alto,0.14781100996965757,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Inversión,Q1 bajo,0.02166377816291161,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Inversión,Q2,0.03552859618717504,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Inversión,Q3,0.05071521456436931,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
-2,grafico,Inversión,Q4 alto,0.07495667244367418,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por adopción,Grupo 1 (25% más bajo),0.001299826689774696,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por adopción,Grupo 2,0.005199306759098787,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por adopción,Grupo 3,0.02859618717504333,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por adopción,Grupo 4 (25% más alto),0.14781100996965757,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por inversión,Grupo 1 (25% más bajo),0.02166377816291161,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por inversión,Grupo 2,0.03552859618717504,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por inversión,Grupo 3,0.05071521456436931,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,grafico,Empresas ordenadas por inversión,Grupo 4 (25% más alto),0.07495667244367418,proporción,eda_cuartiles.csv,"media(productivity_change_percent > 20), cuartil del predictor en muestra común 2026 Q2"
+2,texto_redondeado,Mensaje,"0,13%",0.1299826689774696,porcentaje,eda_cuartiles.csv,"Subtítulo: ai_adoption_rate, Q1, % de empresas con mejora > 20"
+2,texto_redondeado,Mensaje,"7,5%",7.495667244367418,porcentaje,eda_cuartiles.csv,"Subtítulo: ai_investment_per_employee, Q4, % de empresas con mejora > 20"
+2,texto_redondeado,Mensaje,"2,2%",2.166377816291161,porcentaje,eda_cuartiles.csv,"Subtítulo: ai_investment_per_employee, Q1, % de empresas con mejora > 20"
 4,texto_entero,Muestra común TWFE,Observaciones,144743.0,conteo,h1_twfe.csv,Casos completos de respuesta y controles para las dos especificaciones
 4,grafico,Cambio de productividad,Inversión sin adopción,1.0463618574162488,puntos porcentuales,h1_twfe.csv,"beta × sd(M_empresa,periodo X), ddof=1"
 4,grafico,Cambio de productividad,Inversión con adopción,0.2419906556253955,puntos porcentuales,h1_twfe.csv,"beta × sd(M_empresa,periodo X), ddof=1"
 4,grafico,Cambio de productividad,Adopción con inversión,2.336109921545801,puntos porcentuales,h1_twfe.csv,"beta × sd(M_empresa,periodo X), ddof=1"
-4,grafico,Sin adopción,Completa,1.2733880239014386,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Completa; EE agrupados por empresa
-4,grafico,Sin adopción,Sin leverage alto,4.426016241904625,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin leverage alto; EE agrupados por empresa
-4,grafico,Sin adopción,Sin residuos extremos,1.273907620231287,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin residuos |z|>3.5; EE agrupados por empresa
-4,grafico,Con adopción,Completa,0.294494682298853,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Completa; EE agrupados por empresa
-4,grafico,Con adopción,Sin leverage alto,1.6031998247289918,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin leverage alto; EE agrupados por empresa
-4,grafico,Con adopción,Sin residuos extremos,0.2945070516945941,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin residuos |z|>3.5; EE agrupados por empresa
-5,grafico,MAE en empresas nuevas,Media train,4.66572215329787,puntos porcentuales,h1_prediccion.csv,media(abs(y_test − pred_test))
+4,grafico,Modelo sin adopción,Todos los datos,1.2733880239014386,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Completa; EE agrupados por empresa
+4,grafico,Modelo sin adopción,Sin puntos muy alejados (leverage alto),4.426016241904625,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin leverage alto; EE agrupados por empresa
+4,grafico,Modelo sin adopción,Sin errores muy grandes (residuos),1.273907620231287,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin residuos |z|>3.5; EE agrupados por empresa
+4,grafico,Modelo con adopción,Todos los datos,0.294494682298853,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Completa; EE agrupados por empresa
+4,grafico,Modelo con adopción,Sin puntos muy alejados (leverage alto),1.6031998247289918,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin leverage alto; EE agrupados por empresa
+4,grafico,Modelo con adopción,Sin errores muy grandes (residuos),0.2945070516945941,coeficiente de log1p(inversión),h1_sensibilidad.csv,Reajuste TWFE en muestra: Sin residuos |z|>3.5; EE agrupados por empresa
+4,texto_entero,Filas con leverage alto,Retiradas,2187.0,conteo,h1_sensibilidad.csv,"n(Completa) − n(Sin leverage alto), modelo con adopción"
+4,texto_redondeado,Mensaje,"1,5%",1.5109538975978114,porcentaje,h1_sensibilidad.csv,Filas retiradas / n(Completa)
+4,texto_redondeado,Mensaje,"0,29",0.294494682298853,coeficiente de log1p(inversión),h1_sensibilidad.csv,"Mensaje: pendiente con adopción, muestra Completa"
+4,texto_redondeado,Mensaje,"1,60",1.6031998247289918,coeficiente de log1p(inversión),h1_sensibilidad.csv,"Mensaje: pendiente con adopción, muestra Sin leverage alto"
+5,grafico,MAE en empresas nuevas,Siempre el promedio (referencia),4.66572215329787,puntos porcentuales,h1_prediccion.csv,media(abs(y_test − pred_test))
 5,grafico,MAE en empresas nuevas,Ridge,3.356743375985461,puntos porcentuales,h1_prediccion.csv,media(abs(y_test − pred_test))
 5,grafico,MAE en empresas nuevas,Gradient boosting,3.340626241231231,puntos porcentuales,h1_prediccion.csv,media(abs(y_test − pred_test))
 5,texto,R² en test,Ridge,0.4283578567682401,R²,h1_prediccion.csv,1 − sum((y − pred)^2) / sum((y − media(y_test))^2)
+5,texto_redondeado,Mensaje,"42,8%",42.83578567682401,porcentaje de variación explicada,h1_prediccion.csv,100 × R² en test de Ridge
 5,texto,R² en test,Gradient boosting,0.4349932515328105,R²,h1_prediccion.csv,1 − sum((y − pred)^2) / sum((y − media(y_test))^2)
+5,texto_redondeado,Mensaje,"43,5%",43.49932515328105,porcentaje de variación explicada,h1_prediccion.csv,100 × R² en test de Gradient boosting
 6,grafico,Observaciones neutrales,10–99 empleados,0.40930532886122717,proporción,h3_neutral.csv,"media(jobs_created == jobs_displaced), dentro de cada grupo de dotación"
 6,grafico,Observaciones neutrales,100–999 empleados,0.056644047277708755,proporción,h3_neutral.csv,"media(jobs_created == jobs_displaced), dentro de cada grupo de dotación"
 6,grafico,Observaciones neutrales,1000+ empleados,0.003455544421023532,proporción,h3_neutral.csv,"media(jobs_created == jobs_displaced), dentro de cada grupo de dotación"
-7,grafico,Adopción (+10 puntos),Creación / neutral,0.7900930571179309,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
-7,grafico,Adopción (+10 puntos),Desplazamiento / neutral,-0.7549364886242708,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
-7,grafico,Automatización (+10 puntos),Creación / neutral,-1.655150998626489,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
-7,grafico,Automatización (+10 puntos),Desplazamiento / neutral,1.597859917931886,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
-7,texto,VIF máximo,company_size_Startup,19.885987057209817,VIF,h3_vif.csv,max(1/(1 − R² auxiliar)) del diseño de entrenamiento
+7,grafico,Adopción (+10 puntos),Creación frente a neutral,0.7900930571179309,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
+7,texto_redondeado,Mensaje,"2,2",2.203601477517615,RRR,h3_contrastes.csv,"Mensaje: exp(coef) de ai_adoption_rate, net_creation frente a neutral, por +10 puntos"
+7,grafico,Adopción (+10 puntos),Desplazamiento frente a neutral,-0.7549364886242708,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
+7,grafico,Automatización (+10 puntos),Creación frente a neutral,-1.655150998626489,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
+7,grafico,Automatización (+10 puntos),Desplazamiento frente a neutral,1.597859917931886,log(RRR),h3_contrastes.csv,Coeficiente MNLogit; adopción/automatización divididas por 10; neutral es referencia
+7,texto_redondeado,Mensaje,"4,9",4.942443862757581,RRR,h3_contrastes.csv,"Mensaje: exp(coef) de task_automation_rate, net_displacement frente a neutral, por +10 puntos"
+7,contexto,VIF máximo,company_size_Startup,19.885987057209817,VIF,h3_vif.csv,max(1/(1 − R² auxiliar)) del diseño de entrenamiento; no se muestra en la diapositiva
+7,texto_redondeado,Mensaje,"0,7",0.7036665448935221,correlación de Pearson,data/raw/company_limpio.csv,"Pie: r entre adopción y automatización, todas las filas con ambos datos"
 8,tabla_metricas,Logit lineal,Macro-F1,0.6726637772802642,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
 8,tabla_metricas,Logit lineal,F1 creación,0.7396861844623038,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
 8,tabla_metricas,Logit lineal,F1 desplaz.,0.7085470828623598,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
-8,tabla_metricas,Logit spline,Macro-F1,0.6755319274673193,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
-8,tabla_metricas,Logit spline,F1 creación,0.7394466464001231,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
-8,tabla_metricas,Logit spline,F1 desplaz.,0.707808564231738,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
+8,tabla_metricas,Logit con curvas,Macro-F1,0.6755319274673193,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
+8,tabla_metricas,Logit con curvas,F1 creación,0.7394466464001231,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
+8,tabla_metricas,Logit con curvas,F1 desplaz.,0.707808564231738,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
 8,tabla_metricas,RF base,Macro-F1,0.6713803005810037,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
 8,tabla_metricas,RF base,F1 creación,0.735051231075088,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
 8,tabla_metricas,RF base,F1 desplaz.,0.7018805067286197,F1,h3_modelos.csv,F1=2PR/(P+R); macro-F1=media de F1 de las tres clases
@@ -59,13 +71,20 @@ slide,elemento,serie,categoria,valor,unidad,fuente,calculo
 8,matriz,Desplaz.,Desplaz.,0.7098354917745887,proporción por fila,h3_matrices.csv,"conteo(real, predicha) / sum_predicha conteo(real, predicha)"
 8,contexto,Selección por CV,RF ampliado,0.6784862837027124,macro-F1 CV,h3_modelos_cv.csv,"max de macro-F1 promedio en GroupKFold, sin elegir con test"
 8,texto,Referencia mayoritaria,Accuracy,0.4339903813588024,proporción,h3_modelos.csv,media(y_test == clase más frecuente de train)
+8,texto_redondeado,Mensaje,7 de cada 10,0.6993158572105941,proporción,h3_modelos.csv,"Mensaje: accuracy en test de RF ampliado, redondeada a décimos"
+8,texto_redondeado,Mensaje,4 de cada 10,0.4339903813588024,proporción,h3_modelos.csv,"Mensaje: accuracy en test de Mayoritaria, redondeada a décimos"
+8,texto_redondeado,Mensaje,55%,54.54201362604088,porcentaje,h3_modelos.csv,Pie: recall de neutral del RF ampliado
 9,texto_entero,Muestra temporal de test,Mismo trimestre,37544.0,conteo,validacion_temporal.csv,Filas con respuesta disponible en 2026; pares calendario exactos para t−1
 9,texto_entero,Muestra temporal de test,Rezago exacto t-1,35233.0,conteo,validacion_temporal.csv,Filas con respuesta disponible en 2026; pares calendario exactos para t−1
 9,grafico,Modelo,Mismo trimestre · H1,3.4479534910575342,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Modelo,t−1 exacto · H1,4.315006133179946,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Referencia train,Mismo trimestre · H1,4.793719690408037,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Referencia train,t−1 exacto · H1,4.787066259490945,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,texto_redondeado,Mensaje,"3,45",3.4479534910575342,puntos porcentuales,validacion_temporal.csv,"Mensaje: MAE de H1 en 2026, Mismo trimestre"
+9,grafico,Modelo,Trimestre anterior · H1,4.315006133179946,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,texto_redondeado,Mensaje,"4,32",4.315006133179946,puntos porcentuales,validacion_temporal.csv,"Mensaje: MAE de H1 en 2026, Trimestre anterior"
+9,grafico,Referencia sin modelo,Mismo trimestre · H1,4.793719690408037,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,grafico,Referencia sin modelo,Trimestre anterior · H1,4.787066259490945,puntos porcentuales,validacion_temporal.csv,"MAE en 2026; entrenar 2023–24, elegir penalización en 2025"
 9,grafico,Modelo,Mismo trimestre · H3,0.6757660918902437,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Modelo,t−1 exacto · H3,0.5293629701806454,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Referencia train,Mismo trimestre · H3,0.2039146082926588,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
-9,grafico,Referencia train,t−1 exacto · H3,0.2038631542306201,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,texto_redondeado,Mensaje,"0,68",0.6757660918902437,F1,validacion_temporal.csv,"Mensaje: macro_F1 de H3 en 2026, Mismo trimestre"
+9,grafico,Modelo,Trimestre anterior · H3,0.5293629701806454,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,texto_redondeado,Mensaje,"0,53",0.5293629701806454,F1,validacion_temporal.csv,"Mensaje: macro_F1 de H3 en 2026, Trimestre anterior"
+9,grafico,Referencia sin modelo,Mismo trimestre · H3,0.2039146082926588,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"
+9,grafico,Referencia sin modelo,Trimestre anterior · H3,0.2038631542306201,F1,validacion_temporal.csv,"macro_F1 en 2026; entrenar 2023–24, elegir penalización en 2025"

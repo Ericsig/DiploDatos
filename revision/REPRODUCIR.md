@@ -37,13 +37,13 @@ Comprueba respuestas contra el crudo, lags exactos sin saltar huecos, medianas a
 .\.venv\Scripts\python.exe scripts/calcular_valores_presentacion.py
 ```
 
-Este comando no reentrena modelos ni modifica el PPTX. Lee los CSV ejecutados, verifica los datos de los ocho gráficos, la tabla de métricas y la matriz de la diapositiva 8, y genera:
+Este comando no reentrena modelos ni modifica el PPTX. Lee los CSV ejecutados, verifica los datos de los ocho gráficos, la tabla de métricas y la matriz de la diapositiva 8, y las cifras redondeadas de las frases, y genera:
 
 - `revision/VALORES_PRESENTACION.md`.
 - `revision/resultados/valores_presentacion.csv`.
-- `revision/resultados/presentacion_v2_comprobacion.json`.
+- `revision/resultados/presentacion_v3_comprobacion.json`.
 
-La presentación vigente es `deck/IA_en_las_empresas_presentation_v2.pptx`. La comprobación usa nombres de series, categorías, unidades y valores; no depende únicamente de que el archivo exista. Falla si encuentra cifras diferentes. El SHA-256 del PPTX queda registrado, sin alterar sus ediciones de diseño o texto.
+La presentación vigente es `deck/IA_en_las_empresas_presentation_v3.pptx`. La comprobación usa nombres de series, categorías, unidades y valores; no depende únicamente de que el archivo exista. Falla si encuentra cifras diferentes. El SHA-256 del PPTX queda registrado, sin alterar sus ediciones de diseño o texto.
 
 ## Archivos y dependencias entre pasos
 
@@ -59,6 +59,6 @@ Los efectos anuales categóricos desconocidos se representan con la referencia d
 
 `revision/resultados/manifest.json` registra versiones, semilla y hashes de los CSV fuente con rutas relativas portables. Los hashes normalizan CRLF a LF, igualando los saltos de línea que Git puede convertir entre sistemas. Los valores y archivos crudos no se reescriben. Las figuras quedan en `revision/resultados/graficos/` y embebidas en el notebook.
 
-La presentación v2 contiene las ediciones finales del equipo. `scripts/generar_presentaciones.mjs` se conserva como fuente de la generación anterior, pero **no reproduce esas ediciones manuales**. Es opcional y requiere el motor de presentaciones de Codex y sus variables `DIPLO_ARTIFACT_MODULE`, `DIPLO_PRESENTATION_SKILL` y `DIPLO_RUNTIME_PYTHON`. El cálculo y la verificación de cifras solo requieren Python.
+La presentación v3 contiene las ediciones finales, hechas sobre la v2 del equipo. `scripts/generar_presentaciones.mjs` se conserva como fuente de la generación anterior, pero **no reproduce esas ediciones manuales**. Es opcional y requiere el motor de presentaciones de Codex y sus variables `DIPLO_ARTIFACT_MODULE`, `DIPLO_PRESENTATION_SKILL` y `DIPLO_RUNTIME_PYTHON`. El cálculo y la verificación de cifras solo requieren Python.
 
 Los respaldos locales, entornos y recibos de renderizado con rutas de una computadora quedan excluidos por `.gitignore`. Los CSV de resultados, figuras, manifiesto y comprobación portable del PPTX sí se versionan.
