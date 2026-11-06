@@ -21,7 +21,7 @@ Revisión del 29/10/2026. Equipo: Eric Sigwald, Gonzalo Marengo y Sebastian Rigo
 | H3 y signos opuestos | Modelos de componentes en tasas, correlación y AUC por empresa para adopción, automatización y ambas. Se retira el mecanismo causal inferido de nombres. |
 | Neutral | Prevalencia por dotación, conteos pequeños, tabla de etiquetas y reentrenamiento con banda ±0,5% y excluyendo neutral. Tareas no comparables directamente. |
 | Colinealidad H3 | VIF, rango, errores agrupados y sensibilidad retirando dotación o tamaño, con desempeño. |
-| Elección RF ampliado y métrica | Macro-F1 de tres clases en todos los grids y selección de familia; F1 empleo secundaria. Se reporta precisión/recall/F1 por clase, accuracy, log-loss y bootstrap por empresa. |
+| Elección del clasificador y métrica | Macro-F1 de tres clases en todos los grids y selección de familia; F1 empleo secundaria. En la presentación, entre los modelos empatados en validación cruzada (dentro de un desvío entre pliegues) se elige el más simple: logit lineal. Se reporta precisión/recall/F1 por clase, accuracy, log-loss y bootstrap por empresa. |
 | Empresas vs. futuro | GroupKFold y 80/20 por empresa se conservan. Validación temporal 2023–24/2025/2026 se ejecuta como experimento distinto. |
 | Rezagos con huecos | Join exacto por empresa y trimestre calendario; prueba que un salto de dos trimestres no produce lag. |
 | TP3: pregunta/hipótesis y modelos antes de resultados | Presentación v3 de diez slides. Cada modelo declara respuesta, finalidad y funcionamiento antes de su tabla. H2 fuera de las conclusiones. |

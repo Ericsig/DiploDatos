@@ -4,7 +4,7 @@ Equipo: Eric Sigwald, Gonzalo Marengo y Sebastian Rigo.
 
 ## Versión de entrega
 
-La presentación vigente es `deck/IA_en_las_empresas_presentation_v3.pptx`. Parte de `deck/IA_en_las_empresas_presentation_v2.pptx`, editada por el equipo, y solo cambia textos, rótulos y ejes (ver `revision/CAMBIOS_V3.md`). `deck/IA_en_las_empresas_presentation.pptx` es la versión histórica. El borrador `deck/deck.md` fue retirado por el equipo y no se restaura.
+La presentación vigente es `deck/IA_en_las_empresas_presentation_v3.pptx`. Parte de la v2 editada por el equipo, que ya no está en `deck/` pero sigue en el historial de git, y solo cambia textos, rótulos y ejes (ver `revision/CAMBIOS_V3.md`). `deck/IA_en_las_empresas_presentation.pptx` es la versión histórica. El borrador `deck/deck.md` fue retirado por el equipo y no se restaura.
 
 El detalle de decisiones y cálculos está en [CAMBIOS_TP3.md](CAMBIOS_TP3.md). La trazabilidad numérica de cada diapositiva se genera en [VALORES_PRESENTACION.md](VALORES_PRESENTACION.md). El procedimiento está en [REPRODUCIR.md](REPRODUCIR.md).
 

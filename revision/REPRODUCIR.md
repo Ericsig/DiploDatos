@@ -37,7 +37,7 @@ Comprueba respuestas contra el crudo, lags exactos sin saltar huecos, medianas a
 .\.venv\Scripts\python.exe scripts/calcular_valores_presentacion.py
 ```
 
-Este comando no reentrena modelos ni modifica el PPTX. Lee los CSV ejecutados, verifica los datos de los ocho gráficos, la tabla de métricas y la matriz de la diapositiva 8, y las cifras redondeadas de las frases, y genera:
+Este comando no reentrena modelos ni modifica el PPTX. Lee los CSV ejecutados, verifica los datos de los ocho gráficos, las tablas de métricas y de aciertos por clase de la diapositiva 9 y las cifras redondeadas de las frases, y genera:
 
 - `revision/VALORES_PRESENTACION.md`.
 - `revision/resultados/valores_presentacion.csv`.
