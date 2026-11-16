@@ -1,91 +1,139 @@
-Guion para la presentación — IA, productividad y empleo
+# Guion general — IA, productividad y empleo
 
-Duración total: unos 9 minutos y 45 segundos a ritmo tranquilo. Va en las notas de cada diapositiva de la v3.
+Versión del 12/11/2026, adaptada a la devolución de Caro y a las diapositivas observadas en el video. El audio del video no fue transcripto: este texto propone qué decir en la nueva exposición y no reproduce literalmente la grabación.
 
-1. Portada · 35 segundos
+Las indicaciones y los títulos no se leen. El límite del video completo es de 15 minutos, confirmado por Sebastian. La grabación revisada dura 12:52 y entra en ese límite, con 2:08 de margen. Ensayar con cronómetro después de los cambios: el tiempo final depende de las pausas y del ritmo de cada integrante.
 
-“Somos Eric Sigwald, Gonzalo Marengo y Sebastian Rigo. Nos preguntamos qué pasa con la productividad y el empleo de una empresa cuando incorpora inteligencia artificial.
+Sebastian presenta la introducción (diapositiva 1) y las diapositivas 2, 3, 4, 11 y 12. Las diapositivas 5 a 10 corresponden al resto del equipo.
 
-Planteamos dos hipótesis. H1: ¿más inversión en IA por empleado se asocia con una mayor mejora de productividad? H2: ¿cómo se relacionan la adopción y la automatización con el balance entre puestos creados y desplazados? Trabajamos con datos sintéticos, es decir simulados, que siguen a las mismas empresas durante varios trimestres. Por eso hablamos de asociaciones, no de causas.”
+## 1. Introducción
 
-2. Los datos y cómo los limpiamos · 55 segundos
+Buenas tardes. Somos Eric Sigwald, Gonzalo Marengo y Sebastian Rigo. Analizamos cómo se relaciona la incorporación de inteligencia artificial con la productividad y el empleo de las empresas.
 
-“Partimos de un panel con 150.025 respuestas de 10.025 empresas, encuestadas trimestre a trimestre entre 2023 y 2026.
+Nos enfocamos en dos preguntas: si una mayor inversión en IA por empleado se asocia con una mayor mejora de productividad, y cómo se relacionan la adopción y la automatización con el balance de puestos creados y desplazados.
 
-[Señalar la tabla, fila por fila.] Encontramos cuatro problemas. A algunas filas les faltaba la industria o el tamaño, pero la empresa los tenía en otros trimestres: los recuperamos, 2.250 de cada uno. Otras filas no tenían adopción, o la tenían fuera de rango. Como la adopción es algo que estudiamos, no la inventamos: sacamos esas filas. Había también valores imposibles o aislados en otras variables, como ingresos negativos. Ahí corregimos solo la celda, con la mediana de empresas de la misma industria y tamaño. Y no encontramos duplicados.
+Buscamos asociaciones estadísticas; estos análisis no permiten afirmar causalidad.
 
-Quedan 147.471 respuestas de 10.019 empresas. Cada modelo usa las filas que tienen todo lo que necesita, por eso el número cambia un poco entre diapositivas.”
+## 2. Estructura de los datos
 
-3. Entrenamiento y prueba · 35 segundos
+Antes de hablar de la limpieza, veamos qué información tenemos. La tabla principal contiene 150.025 registros de 10.025 empresas, con 43 variables y observaciones entre 2023 y 2026.
 
-“Para no evaluar a un modelo con datos que ya vio, separamos según la pregunta.
+Cada fila representa una empresa en un trimestre. La misma empresa aparece en distintos períodos, lo que permite seguir sus cambios a lo largo del tiempo.
 
-[Señalar la tabla.] Para saber si sirve en empresas que nunca vio, reservamos el 20% de las empresas, enteras, para la prueba. Para saber si sirve hacia adelante, entrenamos con 2023 y 2024, ajustamos con 2025 y probamos con 2026. Y los rellenos, como las medianas, se calculan solo con los datos de entrenamiento.”
+Agrupamos la información en cuatro ejes: contexto empresarial, como país, industria y tamaño; uso e inversión en IA, incluyendo adopción y automatización; gobernanza, como privacidad y gestión de riesgos; y resultados, como productividad y puestos creados o desplazados.
 
-4. Primer vistazo · 50 segundos
+Además, hay identificadores, períodos y metadatos. Otros dos archivos aportan contexto por industria y por país. Para las preguntas que presentamos, la unidad de análisis sigue siendo la empresa en cada trimestre.
 
-“Para un primer vistazo tomamos un solo trimestre, el segundo de 2026, con 9.231 empresas. Las ordenamos dos veces, por adopción de IA y por inversión por empleado, y cada vez las partimos en cuartiles: cuatro grupos con el 25% de las empresas cada uno.
+Con esta estructura clara, pasamos a los problemas que encontramos y cómo los tratamos.
 
-[Señalar el eje vertical.] Cada barra dice qué porcentaje de las empresas de ese cuartil mejoró su productividad más de un 20%.
+## 3. Limpieza y muestra de análisis
 
-[Señalar el último cuartil.] En el cuartil de mayor adopción es casi el 15%; en el de menor adopción, 0,13%. Por inversión también sube, pero menos: de 2,2% a 7,5%. Esto compara empresas distintas en un mismo momento. Ahora seguimos a cada empresa en el tiempo.”
+Con esa estructura, revisamos la calidad de los datos antes de modelar.
 
-5. H1 — Inversión y productividad · 1 minuto y 15 segundos
+En la limpieza recuperamos 2.250 datos de industria y otros tantos de tamaño usando información consistente de la misma empresa. Excluimos 2.253 filas por adopción faltante o categorías irrecuperables, y otras 301 por adopción fuera de rango.
 
-“¿Cuando una empresa invierte más en IA, mejora más su productividad? Para responderlo usamos un modelo TWFE, de efectos fijos. Compara a cada empresa consigo misma en el tiempo y descuenta lo que les pasó a todas en ese trimestre. Es un modelo para explicar, no para predecir, y usa las 144.743 respuestas que tienen productividad, inversión e ingresos.
+En otras variables, los valores imposibles o aislados se trataron en la celda. Para modelar usamos las mediciones observadas y aprendimos los valores de relleno únicamente con entrenamiento, como explicamos a continuación. No encontramos duplicados de empresa y trimestre.
 
-[Señalar el gráfico de la izquierda.] Para comparar variables usamos la misma vara: un aumento típico de cada una dentro de la empresa. Un aumento típico de inversión se asocia con 1,05 puntos más de productividad. Si el modelo también incluye adopción, baja a 0,24, y la adopción se asocia con 2,34. Inversión y adopción se mueven juntas, y comparten parte de la asociación.
+Quedaron 147.471 registros de 10.019 empresas. El número utilizado después depende de qué datos necesita cada análisis.
 
-[Pasar al gráfico de la derecha.] Este gráfico está en la misma unidad. Probamos sacar 2.187 filas, el 1,5%, con valores muy alejados del resto: lo que se llama leverage alto. En el modelo con adopción, la asociación de la inversión sube de 0,24 a 1,32 puntos. Sacar los casos con errores muy grandes casi no la mueve. El signo se mantiene, pero el tamaño depende de pocos casos.”
+## 4. Entrenamiento, validación y prueba
 
-6. H1 — Estimar en empresas nuevas · 45 segundos
+Usamos dos evaluaciones porque responden preguntas distintas.
 
-“Ahora cambiamos de objetivo: ¿podemos estimar la productividad de una empresa que el modelo nunca vio? Comparamos dos modelos para predecir. Ridge es una regresión lineal que frena los coeficientes para no sobreajustar; boosting combina muchos árboles de decisión.
+Para evaluar empresas nuevas, reservamos el 20% de las empresas completas para prueba. En el 80% restante ajustamos los parámetros con validación cruzada de tres pliegues, también separados por empresa.
 
-[Señalar el eje.] Medimos el MAE, el error promedio en puntos de productividad. La referencia es no usar modelo y predecir siempre el promedio de entrenamiento: se equivoca 4,67 puntos. Ridge baja a 3,36 y boosting a 3,34. Debajo de cada barra está el R²: los dos explican alrededor del 43% de la variación. El modelo más complejo casi no mejora.”
+Para evaluar períodos futuros, entrenamos con 2023 y 2024, elegimos los parámetros con 2025 y probamos con 2026.
 
-7. H2 — Creación, desplazamiento y neutral · 55 segundos
+Las medianas se calculan solamente con entrenamiento. Esos valores también completan predictoras faltantes de validación y prueba, sin recalcularlos con esos conjuntos. Productividad y empleo no se imputan: si falta la respuesta, esa fila no participa de ese modelo.
 
-“Pasamos a empleo. Cada observación cae en una de tres clases: creación si se crearon más puestos de los que se desplazaron, desplazamiento si pasó al revés, y neutral si hay empate exacto.
+## 5. Selección de rangos: cuartiles
 
-[Señalar el gráfico.] El empate depende mucho del tamaño: pasa en el 41% de las observaciones de empresas de 10 a 99 empleados y en menos del 1% de las de mil o más. Con pocos puestos, empatar es fácil.
+Para esta comparación tomamos el segundo trimestre de 2026, con 9.231 empresas.
 
-[Señalar el recuadro.] Probamos otras dos definiciones. Sin neutral, el modelo acierta 79%, pero solo separa creación de desplazamiento. Con una banda de más o menos medio punto de la plantilla, neutral pasa del 18% al 28% de los casos. Las dos cambian la pregunta, así que sus métricas no se comparan con las de tres clases. Nos quedamos con el empate exacto, que es la pregunta original.”
+Las ordenamos por adopción y, por separado, por inversión por empleado. En cada caso formamos cuatro cuartiles, con aproximadamente el 25% de las empresas en cada uno. Son grupos por posición; sus intervalos numéricos pueden tener distinto ancho.
 
-8. H2 — Qué se asocia con crear o desplazar · 1 minuto y 10 segundos
+Las barras muestran qué porcentaje de cada cuartil supera el 20% de mejora de productividad. Por adopción, pasa de 0,13% a casi 15%; por inversión, de 2,2% a 7,5%.
 
-“¿Qué se asocia con que una empresa cree o desplace puestos, en vez de quedar neutral? Lo estimamos con un logit multinomial, un modelo para explicar que sirve cuando hay más de dos resultados.
+El 20% es un umbral exploratorio para definir una mejora elevada. Este gráfico compara empresas distintas en un mismo trimestre.
 
-El modelo compara cocientes de probabilidades: la probabilidad de creación dividida por la de neutral, y la de desplazamiento dividida por la de neutral. Cada barra es un RRR, una razón de riesgos relativos: cuánto se multiplica ese cociente cuando una variable sube diez puntos y las demás quedan fijas. Uno significa sin cambio.
+## 6. H1: inversión y productividad dentro de cada empresa
 
-[Señalar adopción y después automatización.] Con diez puntos más de adopción, el cociente de creación se multiplica por 2,20. Con diez puntos más de automatización, el de desplazamiento se multiplica por 4,94. Las barras por debajo de uno muestran que, en cada caso, la otra clase retrocede.
+Para seguir a cada empresa en el tiempo usamos TWFE: efectos fijos de empresa y de trimestre. Compara cada empresa consigo misma y descuenta cambios comunes de cada período, con errores estándar agrupados por empresa.
 
-Adopción y automatización suben juntas, por eso sus efectos se compensan. Decir que una “acompaña” y la otra “reemplaza” sería leer los nombres de las variables: para afirmarlo haría falta saber en qué se usa la IA.”
+Usa 144.743 registros observados. Un aumento típico de inversión se asocia con 1,05 puntos de productividad. Al incluir adopción, baja a 0,24, mientras adopción se asocia con 2,34.
 
-9. H2 — Elegir el clasificador · 1 minuto y 10 segundos
+Al retirar 2.187 observaciones de leverage alto, el 1,5%, la asociación de inversión con adopción incluida sube de 0,24 a 1,32 puntos. El signo persiste, pero la magnitud es sensible. Este análisis explicativo no establece causalidad.
 
-“Ahora queremos predecir la clase en empresas nuevas. [Señalar la tabla.] Comparamos cuatro versiones. El logit lineal supone una relación en línea recta con cada variable; el logit con curvas permite que esa relación se doble. El Random Forest son muchos árboles que votan: la versión base usa una configuración estándar y la ampliada prueba más opciones.
+## 7. H1: estimar productividad en empresas nuevas
 
-Fijamos de antemano la métrica: macro-F1. Va de 0 a 1, combina acertar cuando el modelo predice una clase con no dejar casos reales afuera, y pesa igual a las tres clases.
+Para predecir productividad comparamos Ridge y boosting. Ajustamos sus parámetros por MAE con tres pliegues por empresa y evaluamos en el 20% de empresas reservado.
 
-En validación cruzada, tres modelos quedan a menos de dos milésimas entre sí, menos de lo que varía el resultado entre particiones. Ante un empate elegimos el más simple: el logit lineal, que además es el mismo tipo de modelo que usamos para explicar.
+MAE es el error absoluto medio en puntos de productividad: menos es mejor. Predecir siempre el promedio de entrenamiento da 4,67. Ridge obtiene 3,36 y boosting, 3,34. Ambos mejoran la referencia; la diferencia entre ellos es pequeña.
 
-[Señalar la tabla chica.] Acierta 7 de cada 10, contra 4 de cada 10 si predijéramos siempre la clase más frecuente. Detecta el 75% de las creaciones y el 71% de los desplazamientos, pero solo el 53% de los neutrales: es la clase que más cuesta.”
+## 8. H2: neutral y selección de la banda
 
-10. Anticipar el trimestre siguiente · 55 segundos
+En empleo distinguimos creación neta, desplazamiento neto y neutral, definido como empate exacto entre puestos creados y desplazados.
 
-“Hasta acá usamos datos del mismo trimestre: eso explica, pero no anticipa. Para acercarnos a un pronóstico entrenamos con 2023 y 2024, ajustamos con 2025 y probamos con 2026, de dos maneras: con datos del mismo trimestre y solo con los del trimestre anterior. Si el trimestre anterior falta, ese caso queda afuera.
+Ese empate aparece en el 41% de los registros de empresas de menos de 100 empleados y en menos del 1% de las de mil o más.
 
-La referencia es lo que se obtiene sin modelo: el promedio para productividad y la clase más frecuente para empleo.
+Probamos dos alternativas. Al quitar neutrales preguntamos: entre empresas con saldo distinto de cero, ¿cuáles crean y cuáles desplazan? El RF ampliado acierta 79%.
 
-[Señalar el gráfico de productividad.] Acá menos es mejor: el error de Ridge pasa de 3,45 a 4,32 puntos, contra 4,79 de la referencia.
+Con una banda de ±0,5% de la plantilla ampliamos la definición de neutral: pasa del 18% al 28%. Es una sensibilidad a un umbral alternativo. Conservamos el empate exacto como definición principal; las métricas de las alternativas no indican una mejora en la tarea original.
 
-[Señalar el gráfico de empleo.] Acá más es mejor: el macro-F1 del logit baja de 0,68 a 0,53, contra 0,20 de la referencia. Anticipar cuesta, pero queda señal.”
+## 9. H2: adopción, automatización y empleo
 
-11. Conclusiones · 40 segundos
+Adopción representa cuánto incorpora o usa IA la empresa; automatización, cuánto de sus tareas pasa a realizarse automáticamente. Usar IA como asistencia puede aumentar adopción sin sustituir una tarea completa.
 
-“En productividad, dentro de una misma empresa, más inversión se asocia con más productividad. Pero ese tamaño baja al controlar por adopción y cambia mucho con pocos casos extremos.
+El logit multinomial compara creación y desplazamiento frente a neutral. Con diez puntos más de adopción, el cociente P(creación)/P(neutral) se multiplica por 2,20. Con diez puntos más de automatización, P(desplazamiento)/P(neutral) se multiplica por 4,94, manteniendo los demás predictores fijos.
 
-En empleo, más adopción se asocia con más creación y más automatización con más desplazamiento, siempre frente a neutral. Los datos no alcanzan para decir por qué.
+El análisis de componentes también vincula creación con adopción y desplazamiento con automatización. La asistencia y la sustitución son mecanismos posibles, pero este trabajo no los demuestra.
 
-Anticipar un trimestre es posible, pero se predice peor. Como son datos sintéticos, los pasos siguientes son entender cómo se generaron, mirar en qué se usa la IA en cada empresa y probar estos patrones en datos reales. Gracias.”
+## 10. H2: selección del clasificador
+
+Los cuatro clasificadores usan la misma partición por empresa y los mismos tres pliegues internos. Elegimos configuraciones por macro-F1, que da igual peso a las tres clases.
+
+Comparamos logit lineal, logit con curvas y dos Random Forest de 200 árboles. El RF base tiene profundidad máxima 18 y hojas de al menos 25 registros. En el ampliado fijamos profundidad 12 y probamos cuatro combinaciones: hojas de 5 o 25 registros, con pesos iguales o menor peso para neutral. Ganó hojas de 25, sin ponderación especial.
+
+Tres modelos quedan muy próximos en validación cruzada. Elegimos el logit lineal por simplicidad. La tabla muestra test: acierta 7 de cada 10 y detecta peor neutral, con recall del 53%.
+
+## 11. Anticipar el trimestre siguiente
+
+Hasta acá vimos relaciones y predicciones con información del mismo trimestre. Ahora preguntamos si podemos anticipar la productividad y el balance de empleo del trimestre siguiente usando los datos del trimestre anterior.
+
+Para respetar el orden temporal, entrenamos con 2023 y 2024, seleccionamos los parámetros con 2025 y dejamos 2026 para la prueba final.
+
+En productividad usamos Ridge. El error absoluto medio pasa de 3,45 puntos con información del mismo trimestre a 4,32 al anticipar. Cuanto menor es este error, mejor. Todavía mejora la referencia de predecir siempre el promedio de entrenamiento, que tiene un error de 4,79.
+
+En empleo usamos el logit lineal. El macro-F1, que da el mismo peso a las tres clases y mejora cuanto más alto es, baja de 0,68 a 0,53. Aun así, supera el 0,20 de la referencia de predecir siempre la clase más frecuente del entrenamiento.
+
+Las muestras difieren porque para anticipar necesitamos contar con el trimestre anterior exacto. Por eso, la comparación no aísla solamente el efecto de anticipar. Evaluamos un trimestre por vez, suponiendo que ya conocemos el anterior; no pronosticamos todo 2026 de una sola vez.
+
+Estos resultados muestran señal predictiva en esta evaluación, aunque con menor precisión al anticipar.
+
+## 12. Conclusiones
+
+Encontramos una asociación positiva entre inversión en IA y productividad dentro de cada empresa. Su magnitud disminuye al incluir adopción y es sensible a pocas observaciones extremas.
+
+En empleo, adopción se asocia con creación neta y automatización con desplazamiento neto, frente a neutral. Esa diferencia no demuestra por sí sola cómo se usa la IA ni qué causa los cambios laborales.
+
+Para anticipar un trimestre, ambos modelos superan sus referencias simples, aunque pierden precisión respecto de usar información del mismo período.
+
+Como próximos pasos proponemos estudiar los usos concretos de IA y comprobar si estos patrones se mantienen en otras muestras y períodos. Muchas gracias.
+
+## Coordinación con las diapositivas
+
+- Diapositiva 3: agregar una síntesis temática de las variables; evitar que la introducción al dataset quede limitada a la limpieza. Distinguir la exportación descriptiva imputada de los datos observados usados para TP3.
+- Diapositiva 4 del video: reemplazar el pie por «Las medianas se calculan solo con entrenamiento y se aplican a predictoras faltantes de validación y prueba. No se imputan las respuestas ni se utiliza información futura». El PPTX local ya contiene una formulación más correcta que la grabación.
+- Diapositiva 6: presentar TWFE como una regresión con efectos fijos de empresa y de trimestre. Su revisión se apoya en diagnósticos y sensibilidad, no en elegirlo por validación cruzada predictiva.
+- Diapositiva 7: recordar la validación por empresa al presentar Ridge y boosting.
+- Diapositiva 8: cambiar «las alternativas responden otra pregunta» por «Excluir neutral restringe la población; la banda modifica la definición de neutral». Atribuir el 79% al RF ampliado.
+- Diapositiva 9: definir adopción y automatización. Reemplazar «suben juntas, por eso sus efectos se compensan» por «Están correlacionadas y presentan asociaciones condicionales de signo opuesto». La correlación no demuestra compensación.
+- Diapositiva 10: reemplazar «configuración estándar» por «configuración base fijada»; precisar la búsqueda del RF ampliado y rotular las métricas de la tabla como test por empresa. Recordar que la selección usa CV, no el puntaje de test. El criterio se fijó en la revisión, después de que el test ya se había consultado en entregas anteriores.
+- Diapositiva 11: conservar la advertencia de muestras distintas y la disponibilidad secuencial del trimestre anterior.
+- Diapositiva 12: mantener conclusiones de asociación y sensibilidad, sin afirmar causalidad ni generalizar a empresas reales.
+
+## Alcance de la fuente
+
+El proyecto local y las diapositivas de la grabación califican los datos como sintéticos. El origen y el generador deben acreditarse con una fuente antes de presentarlo como hecho verificado. El guion oral utiliza «registros» y no afirma que se trate de encuestas reales. Las limitaciones causales se justifican por el diseño del análisis.
+
+No se modificaron los modelos ni sus resultados. La presentación v4 incorpora la diapositiva de estructura, adapta la introducción a la limpieza y renumera las posteriores. Los demás ajustes de diapositivas indicados arriba siguen pendientes.
